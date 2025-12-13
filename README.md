@@ -1,5 +1,4 @@
 zero-trust/
-
 └── aws/
     └── 01-detect-and-respond/
         ├── README.md
@@ -22,6 +21,7 @@ zero-trust/
         │   └── lambda-response/
         └── evidence/
             └── screenshots/
+         
 
             # AWS Zero Trust — Detect and Respond
 ## Volume 01: Continuous Visibility, Threat Detection, and Automated Response
