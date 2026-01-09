@@ -1,3 +1,4 @@
+```
 zero-trust/
 └── aws/
     └── 01-detect-and-respond/
@@ -21,6 +22,7 @@ zero-trust/
         │   └── lambda-response/
         └── evidence/
             └── screenshots/
+```
          
 
             # AWS Zero Trust — Detect and Respond
