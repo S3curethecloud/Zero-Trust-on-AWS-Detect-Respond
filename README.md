@@ -50,7 +50,7 @@ By completing this lab, you will be able to:
 ## 4. Zero Trust Maturity Mapping
 
 | Level | Capability | Implemented in This Lab |
-|------|-----------|-------------------------|
+| :--- | :--- | :--- |
 | Level 1 | Visibility | AWS CloudTrail |
 | Level 2 | Threat Detection | Amazon GuardDuty |
 | Level 3 | Signal Correlation | AWS Security Hub |
@@ -64,7 +64,6 @@ By completing this lab, you will be able to:
 ## 5. Architecture Overview
 
 ### Core Flow
-
 Identity Event
 ↓
 CloudTrail
@@ -77,25 +76,19 @@ EventBridge
 ↓
 Lambda (Containment)
 
-markdown
-Copy code
+text
 
 ### Key AWS Services Used
 
-- AWS CloudTrail  
-- Amazon GuardDuty  
-- AWS Security Hub  
-- Amazon EventBridge  
-- AWS Lambda  
+- AWS CloudTrail
+- Amazon GuardDuty
+- AWS Security Hub
+- Amazon EventBridge
+- AWS Lambda
 
 ### Canonical Architecture Diagram
 
-See:
-
-01-architecture/diagrams/zero-trust-detect-respond-architecture.png
-
-yaml
-Copy code
+See: `01-architecture/diagrams/zero-trust-detect-respond-architecture.png`
 
 > **Source of truth:** `.mmd` file
 
@@ -122,13 +115,13 @@ Enable:
 
 **Expected Outcome**
 
-- GuardDuty operational  
-- Security Hub receiving findings  
+- GuardDuty operational
+- Security Hub receiving findings
 
 📸 **Evidence to capture**
 
-- GuardDuty enabled  
-- Security Hub dashboard  
+- GuardDuty enabled
+- Security Hub dashboard
 
 ---
 
@@ -136,20 +129,17 @@ Enable:
 
 Trigger an identity-based anomaly such as:
 
-- Unusual STS role assumption  
-- Privilege escalation attempt  
-- API call from unexpected region  
+- Unusual STS role assumption
+- Privilege escalation attempt
+- API call from unexpected region
 
 GuardDuty findings may include:
 
-UnauthorizedAccess:IAMUser/AnomalousBehavior
-
-yaml
-Copy code
+`UnauthorizedAccess:IAMUser/AnomalousBehavior`
 
 📸 **Evidence to capture**
 
-- GuardDuty finding details page  
+- GuardDuty finding details page
 
 ---
 
@@ -157,9 +147,9 @@ Copy code
 
 Security Hub aggregates:
 
-- GuardDuty finding  
-- IAM context  
-- Account metadata  
+- GuardDuty finding
+- IAM context
+- Account metadata
 
 This is the Zero Trust decision moment:
 
@@ -167,7 +157,7 @@ This is the Zero Trust decision moment:
 
 📸 **Evidence to capture**
 
-- Security Hub aggregated finding view  
+- Security Hub aggregated finding view
 
 ---
 
@@ -175,15 +165,15 @@ This is the Zero Trust decision moment:
 
 An EventBridge rule triggers a Lambda function that:
 
-- Disables the compromised IAM role  
-- Revokes active STS sessions  
-- Tags the principal as `Quarantined=true`  
-- Logs evidence for forensics  
+- Disables the compromised IAM role
+- Revokes active STS sessions
+- Tags the principal as `Quarantined=true`
+- Logs evidence for forensics
 
 📸 **Evidence to capture**
 
-- Lambda execution logs  
-- IAM role disabled or modified  
+- Lambda execution logs
+- IAM role disabled or modified
 
 ---
 
@@ -193,14 +183,14 @@ Attempt the same access again.
 
 **Result**
 
-- Access denied  
-- Trust revoked  
-- Incident fully documented  
+- Access denied
+- Trust revoked
+- Incident fully documented
 
 📸 **Evidence to capture**
 
-- Access denied error  
-- Incident timeline  
+- Access denied error
+- Incident timeline
 
 ---
 
@@ -208,26 +198,21 @@ Attempt the same access again.
 
 This lab produces **real security artifacts**:
 
-- GuardDuty findings  
-- Security Hub correlation  
-- Lambda execution logs  
-- CloudTrail evidence  
-- Incident screenshots  
+- GuardDuty findings
+- Security Hub correlation
+- Lambda execution logs
+- CloudTrail evidence
+- Incident screenshots
 
 Binder-ready documentation:
 
-04-screenshots/
-binder/zero-trust-detect-respond.pdf
-
-yaml
-Copy code
+`04-screenshots/binder/zero-trust-detect-respond.pdf`
 
 ---
 
 ## 9. How This Integrates with STC / MGF
 
 This lab registers as an **MGF detection–response node**:
-
 MGF NODE
 ├── Signal: GuardDuty
 ├── Correlation: Security Hub
@@ -235,8 +220,7 @@ MGF NODE
 ├── Action: Identity containment
 └── Artifact: Binder + screenshots
 
-yaml
-Copy code
+text
 
 Supported conceptual commands:
 
@@ -251,10 +235,10 @@ Supported conceptual commands:
 
 After this lab, you can confidently explain:
 
-- How Zero Trust actually works on AWS  
-- How to automate containment safely  
-- How to prove enforcement with evidence  
-- How to design scalable detection–response pipelines  
+- How Zero Trust actually works on AWS
+- How to automate containment safely
+- How to prove enforcement with evidence
+- How to design scalable detection–response pipelines
 
 > This lab is **enterprise-credible**, not theoretical.
 
@@ -275,36 +259,31 @@ Recommended follow-ups:
 
 ### Tier 1 — Canonical Architecture (Authoritative)
 
-- One Mermaid diagram  
-- Source of truth: `.mmd`  
-- Used for README, binder, interviews  
-
+- One Mermaid diagram
+- Source of truth: `.mmd`
+- Used for README, binder, interviews
 01-architecture/diagrams/
 └── zero-trust-detect-respond-architecture.mmd
 
-makefile
-Copy code
+text
 
 ### Tier 2 — Lab Flow Diagrams (Teaching)
 
 Purpose: guide students during execution.
-
 02-hands-on-lab/diagrams/
 ├── step-01-detection-flow.mmd
 ├── step-02-correlation-flow.mmd
 └── step-03-response-flow.mmd
 
-makefile
-Copy code
+text
 
 ### Tier 3 — Evidence Screenshots (Proof)
 
 Purpose: demonstrate enforcement.
-
 04-screenshots/
 ├── guardduty-finding.png
 ├── securityhub-aggregated.png
 ├── lambda-execution.png
 └── incident-timeline.png
 
-Copy code
+text
