@@ -1,3 +1,5 @@
+GITHUB 1MB.webp
+
 # 🔐 Zero Trust on AWS — Detect & Respond
 
 **STC Academy | Advanced Hands-On Lab**
