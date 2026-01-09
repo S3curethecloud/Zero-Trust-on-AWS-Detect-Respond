@@ -13,8 +13,8 @@ mgf:
 # REPOSITORY IDENTITY
 # ---------------------------------------------------------
 repo_identity:
-  name: zero-trust-aws-detect-and-respond
-  slug: zero-trust-aws-detect-and-respond
+  name: Zero-Trust-on-AWS-Detect-Respond
+  slug: Zero-Trust-on-AWS-Detect-Respond
   uuid: AUTO
   type: academy-lab
   lifecycle: production
