@@ -1,0 +1,264 @@
+# =========================================================
+# MGF METADATA — CANONICAL
+# Repo: zero-trust-aws-detect-and-respond
+# Domain: Zero Trust | Detection | Automated Response
+# =========================================================
+
+mgf:
+  mgf_version: "1.0"
+  stc_version: "1.0"
+  schema: mgf.academy.lab
+
+# ---------------------------------------------------------
+# REPOSITORY IDENTITY
+# ---------------------------------------------------------
+repo_identity:
+  name: zero-trust-aws-detect-and-respond
+  slug: zero-trust-aws-detect-and-respond
+  uuid: AUTO
+  type: academy-lab
+  lifecycle: production
+  status: canonical
+  visibility: public
+
+  owner:
+    organization: SecureTheCloud
+    division: STC Academy
+    maintainer: STC-AI
+
+  source_of_truth: git
+  primary_branch: main
+  created: AUTO
+  last_reviewed: AUTO
+
+# ---------------------------------------------------------
+# CLASSIFICATION & TAXONOMY
+# ---------------------------------------------------------
+classification:
+  domains:
+    - zero-trust
+    - cloud-security
+    - detection-response
+    - identity-security
+    - incident-response
+
+  subdomains:
+    - sts-monitoring
+    - iam-anomaly-detection
+    - event-driven-security
+    - serverless-soar
+
+  providers:
+    - aws
+
+  services:
+    - iam
+    - sts
+    - cloudtrail
+    - guardduty
+    - securityhub
+    - eventbridge
+    - lambda
+    - s3
+    - cloudwatch
+
+  architectures:
+    - zero-trust
+    - event-driven
+    - serverless
+    - defense-in-depth
+
+  industries:
+    - enterprise
+    - banking
+    - healthcare
+    - airline
+
+# ---------------------------------------------------------
+# ZERO TRUST MATURITY MAPPING
+# ---------------------------------------------------------
+zero_trust:
+  framework: nist-800-207
+
+  pillars:
+    - identity
+    - device
+    - workload
+    - network
+    - telemetry
+    - automation
+
+  maturity_levels:
+    level_1:
+      name: visibility
+      implemented:
+        - cloudtrail_logging
+        - baseline_iam_audit
+
+    level_2:
+      name: threat_detection
+      implemented:
+        - guardduty_findings
+        - anomalous_api_detection
+
+    level_3:
+      name: signal_correlation
+      implemented:
+        - securityhub_aggregation
+        - multi-source_findings
+
+    level_4:
+      name: automated_response
+      implemented:
+        - eventbridge_triggers
+        - lambda_containment
+
+    level_5:
+      name: continuous_enforcement
+      implemented:
+        - identity_revocation
+        - blast_radius_reduction
+        - trust_recalculation
+
+# ---------------------------------------------------------
+# LEARNING OBJECTIVES (ACADEMY)
+# ---------------------------------------------------------
+learning_objectives:
+  primary:
+    - Understand Zero Trust as continuous enforcement
+    - Detect identity-based trust violations in AWS
+    - Automate response using event-driven security
+    - Validate containment and audit evidence
+
+  secondary:
+    - Map findings to Zero Trust maturity
+    - Explain detection-response in interviews
+    - Produce incident-ready documentation
+
+# ---------------------------------------------------------
+# HANDS-ON LAB STRUCTURE
+# ---------------------------------------------------------
+lab:
+  level: advanced
+  estimated_time: "90–120 minutes"
+  prerequisites:
+    - aws_account_with_admin_access
+    - basic_iam_knowledge
+    - familiarity_with_lambda
+
+  phases:
+    - detection_setup
+    - threat_simulation
+    - signal_correlation
+    - automated_response
+    - validation_and_forensics
+
+# ---------------------------------------------------------
+# DETECTION SIGNALS
+# ---------------------------------------------------------
+signals:
+  identity:
+    - anomalous_sts_assume_role
+    - unexpected_region_access
+    - privilege_escalation_attempt
+
+  workload:
+    - suspicious_api_patterns
+
+  network:
+    - unexpected_service_calls
+
+# ---------------------------------------------------------
+# RESPONSE ACTIONS
+# ---------------------------------------------------------
+response:
+  type: automated
+  orchestration:
+    - eventbridge
+    - lambda
+    - step_functions_optional
+
+  actions:
+    - revoke_active_sessions
+    - disable_iam_role
+    - tag_principal_quarantined
+    - log_incident_evidence
+
+# ---------------------------------------------------------
+# AUTOMATION ASSETS
+# ---------------------------------------------------------
+automation:
+  lambda_functions:
+    - name: quarantine-iam-role
+      purpose: disable_compromised_identity
+      runtime: python3.11
+
+  event_rules:
+    - name: guardduty-to-response
+      source: aws.guardduty
+      target: lambda
+
+# ---------------------------------------------------------
+# OBSERVABILITY & FORENSICS
+# ---------------------------------------------------------
+observability:
+  logs:
+    - cloudtrail
+    - lambda_logs
+    - securityhub_findings
+
+  storage:
+    - s3_object_lock_optional
+
+  metrics:
+    - mean_time_to_detect
+    - mean_time_to_respond
+
+# ---------------------------------------------------------
+# ARTIFACTS & EVIDENCE
+# ---------------------------------------------------------
+artifacts:
+  screenshots:
+    required: true
+    paths:
+      - 04-screenshots/guardduty-finding.png
+      - 04-screenshots/securityhub-aggregated.png
+      - 04-screenshots/lambda-execution.png
+      - 04-screenshots/incident-timeline.png
+
+  binder:
+    primary_artifact: binder/zero-trust-detect-respond.pdf
+    version: "1.0"
+    authority: canonical
+
+# ---------------------------------------------------------
+# STC AI / MGF INTEGRATION
+# ---------------------------------------------------------
+mgf_nodes:
+  node_name: zero-trust-detect-respond
+  node_type: detection-response
+  auto_discover: true
+  dashboard_enabled: true
+  interview_ready: true
+
+mgf_commands_supported:
+  - mgf scan trust
+  - mgf detect anomaly
+  - mgf respond identity
+  - mgf generate incident
+  - mgf export binder
+
+# ---------------------------------------------------------
+# GOVERNANCE
+# ---------------------------------------------------------
+governance:
+  change_control: required
+  review_cycle: quarterly
+  compliance_alignment:
+    - nist-800-207
+    - nist-800-53
+    - iso-27001
+
+# ---------------------------------------------------------
+# END OF FILE
+# ---------------------------------------------------------
