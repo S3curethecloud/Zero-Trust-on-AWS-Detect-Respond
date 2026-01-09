@@ -212,14 +212,15 @@ Binder-ready documentation:
 ## 9. How This Integrates with STC / MGF
 
 This lab registers as an **MGF detection–response node**:
+```
 MGF NODE
 ├── Signal: GuardDuty
 ├── Correlation: Security Hub
 ├── Decision: Lambda logic
 ├── Action: Identity containment
 └── Artifact: Binder + screenshots
+```
 
-text
 
 Supported conceptual commands:
 
@@ -261,6 +262,7 @@ Recommended follow-ups:
 - One Mermaid diagram
 - Source of truth: `.mmd`
 - Used for README, binder, interviews
+  
 01-architecture/diagrams/
 └── zero-trust-detect-respond-architecture.mmd
 
@@ -269,20 +271,24 @@ Recommended follow-ups:
 ### Tier 2 — Lab Flow Diagrams (Teaching)
 
 Purpose: guide students during execution.
+```
 02-hands-on-lab/diagrams/
 ├── step-01-detection-flow.mmd
 ├── step-02-correlation-flow.mmd
 └── step-03-response-flow.mmd
+```
 
 
 
 ### Tier 3 — Evidence Screenshots (Proof)
 
 Purpose: demonstrate enforcement.
+```
 04-screenshots/
 ├── guardduty-finding.png
 ├── securityhub-aggregated.png
 ├── lambda-execution.png
 └── incident-timeline.png
+```
 
 
