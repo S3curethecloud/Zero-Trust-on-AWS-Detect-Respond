@@ -1,4 +1,5 @@
-https://github.com/S3curethecloud/Zero-Trust-on-AWS-Detect-Respond/blob/772538319a9d3ee5ae420b4bc11042c66aa04d83/logo.webp
+![Zero Trust on AWS Logo](./logo.webp)
+
 
 # 🔐 Zero Trust on AWS — Detect & Respond
 
