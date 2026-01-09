@@ -1,127 +1,249 @@
-```
-zero-trust/
-└── aws/
-    └── 01-detect-and-respond/
-        ├── README.md
-        ├── architecture/
-        │   ├── detect-and-respond.mmd
-        │   └── detect-and-respond.png
-        ├── labs/
-        │   ├── 01-logging-foundation/
-        │   │   └── README.md
-        │   ├── 02-guardduty-detection/
-        │   │   └── README.md
-        │   ├── 03-security-hub-centralization/
-        │   │   └── README.md
-        │   └── 04-automated-response/
-        │       └── README.md
-        ├── terraform/
-        │   ├── guardduty/
-        │   ├── security-hub/
-        │   ├── eventbridge/
-        │   └── lambda-response/
-        └── evidence/
-            └── screenshots/
-```
-         
+Zero Trust on AWS — Detect & Respond
 
-            # AWS Zero Trust — Detect and Respond
-## Volume 01: Continuous Visibility, Threat Detection, and Automated Response
+STC Academy | Advanced Hands-On Lab
 
-This module implements the **Detect and Respond** pillar of Zero Trust on AWS.
-The objective is to eliminate static trust assumptions by continuously observing
-behavior, detecting anomalies, and responding automatically to risk signals.
+1. Purpose of This Lab
 
----
+This lab demonstrates how Zero Trust is enforced on AWS through continuous detection and automated response, not merely through static IAM design.
 
-## Zero Trust Alignment
+Students will deploy, trigger, detect, correlate, and automatically respond to a trust violation using AWS-native services and event-driven automation.
 
-| Zero Trust Principle | AWS Implementation |
-|---------------------|-------------------|
-| Assume Breach | GuardDuty continuous threat analysis |
-| Continuous Verification | CloudTrail + VPC Flow Logs |
-| Least Privilege Reaction | Automated isolation and credential revocation |
-| Minimize Blast Radius | Event-driven containment |
+This lab is:
 
----
+Hands-on
 
-## Architecture Overview
+Production-grade
 
-**Signal Sources**
-- AWS CloudTrail
-- VPC Flow Logs
-- DNS Logs
+Directly mappable to enterprise Zero Trust programs
 
-**Detection**
-- Amazon GuardDuty
+Designed for STC Academy, consulting proof, and interviews
 
-**Aggregation & Compliance**
-- AWS Security Hub
+2. What “Zero Trust” Means in This Lab (Guru Perspective)
 
-**Automation**
-- Amazon EventBridge
-- AWS Lambda (response functions)
+Zero Trust is not “deny by default.”
+Zero Trust is continuous trust evaluation.
 
----
+In AWS:
 
-## Labs Overview
+Detection = trust signal
 
-| Lab | Focus |
-|----|------|
-| Lab 01 | Logging & telemetry foundation |
-| Lab 02 | Threat detection with GuardDuty |
-| Lab 03 | Centralized findings via Security Hub |
-| Lab 04 | Automated response and isolation |
+Response = trust revocation
 
-Each lab is independent but builds toward a unified Zero Trust detection fabric.
+Automation = enforcement at scale
 
----
+Trust is revoked dynamically when identity, behavior, or context violates expected intent.
 
-## Outcomes
+3. Learning Objectives
 
-By completing this module, you will be able to:
+By completing this lab, you will be able to:
 
-- Explain Zero Trust detection to executives and auditors
-- Demonstrate hands-on GuardDuty + Security Hub integration
-- Prove automated containment using event-driven security
-- Reuse this pattern across multi-account AWS environments
+Explain Zero Trust as a detect-and-respond model
 
----
+Identify identity-based trust violations in AWS
 
-## Compliance Mapping (Reference)
+Use GuardDuty + Security Hub for signal correlation
 
-- CIS AWS Foundations
-- AWS Foundational Security Best Practices
-- PCI-DSS (monitoring & incident response controls)
-- HIPAA Security Rule (audit & response alignment)
+Build automated containment using event-driven security
 
----
+Prove enforcement through audit-ready evidence
 
-## Next Module
+Map AWS controls to Zero Trust maturity levels
 
-➡ **02-device-and-workload-trust**  
-Device posture, workload verification, and identity-aware access enforcement.
+4. Zero Trust Maturity Mapping
+Level	Capability	Implemented in This Lab
+Level 1	Visibility	AWS CloudTrail
+Level 2	Threat Detection	Amazon GuardDuty
+Level 3	Signal Correlation	AWS Security Hub
+Level 4	Automated Response	AWS Lambda
+Level 5	Continuous Enforcement	Event-driven identity containment
 
-# Lab 0X — <Title>
+This lab advances students from Level 2 → Level 5.
 
-## Objective
-What Zero Trust control this lab enforces.
+5. Architecture Overview
+Core Flow
+Identity Event
+   ↓
+CloudTrail
+   ↓
+GuardDuty
+   ↓
+Security Hub
+   ↓
+EventBridge
+   ↓
+Lambda (Containment)
 
-## Architecture
-Describe signal → detection → response flow.
+Key AWS Services Used
 
-## Prerequisites
-- AWS Account
-- IAM permissions
-- Prior labs (if any)
+AWS CloudTrail
 
-## Steps
-1. Configuration
-2. Validation
-3. Threat simulation (where applicable)
+Amazon GuardDuty
 
-## Evidence
-Screenshots or logs proving execution.
+AWS Security Hub
 
-## Zero Trust Takeaway
-What trust assumption was removed.
+Amazon EventBridge
+
+AWS Lambda
+
+6. Lab Prerequisites
+
+AWS account with administrative permissions
+
+Familiarity with IAM and STS concepts
+
+Basic understanding of Lambda and JSON policies
+
+Estimated time: 90–120 minutes
+
+7. Hands-On Lab Walkthrough
+Step 1 — Enable Detection Services
+
+Enable the following:
+
+GuardDuty (all regions)
+
+Security Hub (AWS Foundational Security Best Practices)
+
+Confirm CloudTrail is logging management events
+
+Expected Outcome
+
+GuardDuty operational
+
+Security Hub receiving findings
+
+📸 Screenshot to capture:
+
+GuardDuty enabled
+
+Security Hub dashboard
+
+Step 2 — Simulate a Trust Violation
+
+Trigger an identity-based anomaly such as:
+
+Unusual STS role assumption
+
+Privilege escalation attempt
+
+API call from unexpected region
+
+GuardDuty will generate a finding such as:
+
+UnauthorizedAccess:IAMUser/AnomalousBehavior
+
+
+📸 Screenshot to capture:
+
+GuardDuty finding details page
+
+Step 3 — Correlate Signals (Zero Trust Decision Point)
+
+Security Hub aggregates:
+
+GuardDuty finding
+
+IAM context
+
+Account metadata
+
+This is the Zero Trust decision moment:
+
+“Should this identity continue to be trusted?”
+
+📸 Screenshot to capture:
+
+Security Hub aggregated finding view
+
+Step 4 — Automated Response (Trust Revocation)
+
+EventBridge rule triggers a Lambda function that:
+
+Disables the compromised IAM role
+
+Revokes active STS sessions
+
+Tags the principal as Quarantined=true
+
+Logs evidence for forensics
+
+📸 Screenshot to capture:
+
+Lambda execution logs
+
+IAM role disabled or modified
+
+Step 5 — Validate Enforcement
+
+Attempt the same access again.
+
+Result
+
+Access denied
+
+Trust has been revoked
+
+Incident fully documented
+
+📸 Screenshot to capture:
+
+Access denied error
+
+Incident timeline
+
+8. Evidence & Artifacts
+
+This lab produces real security artifacts:
+
+GuardDuty findings
+
+Security Hub correlation
+
+Lambda execution logs
+
+CloudTrail evidence
+
+Incident screenshots
+
+Binder-ready documentation
+
+All artifacts are referenced in:
+
+04-screenshots/
+binder/zero-trust-detect-respond.pdf
+
+9. How This Integrates with STC / MGF
+
+This lab registers as an MGF detection-response node:
+
+MGF NODE
+├── Signal: GuardDuty
+├── Correlation: Security Hub
+├── Decision: Lambda logic
+├── Action: Identity containment
+└── Artifact: Binder + screenshots
+
+
+Supported conceptual commands:
+
+mgf scan trust
+
+mgf detect anomaly
+
+mgf respond identity
+
+mgf generate incident
+
+10. Why This Matters (Interview & Consulting)
+
+After this lab, you can confidently explain:
+
+How Zero Trust actually works on AWS
+
+How to automate containment safely
+
+How to prove enforcement with evidence
+
+How to design scalable detection-response pipelines
+
+This lab is enterprise-credible, not theoretical.
