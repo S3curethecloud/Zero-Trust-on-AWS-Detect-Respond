@@ -76,7 +76,6 @@ EventBridge
 ↓
 Lambda (Containment)
 
-text
 
 ### Key AWS Services Used
 
@@ -265,7 +264,7 @@ Recommended follow-ups:
 01-architecture/diagrams/
 └── zero-trust-detect-respond-architecture.mmd
 
-text
+
 
 ### Tier 2 — Lab Flow Diagrams (Teaching)
 
@@ -275,7 +274,7 @@ Purpose: guide students during execution.
 ├── step-02-correlation-flow.mmd
 └── step-03-response-flow.mmd
 
-text
+
 
 ### Tier 3 — Evidence Screenshots (Proof)
 
@@ -286,4 +285,4 @@ Purpose: demonstrate enforcement.
 ├── lambda-execution.png
 └── incident-timeline.png
 
-text
+
